@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Students</span>
+        <span class="toolbar-spacer"></span>
+        <button mat-button color="primary" aria-label="Add student" (click)="addStudent()">
+          <mat-icon>add</mat-icon> Add Student
+        </button>
+      </mat-toolbar-row>    
+</mat-toolbar>
+<div class="container" *ngIf="students.length !== 0; else empty">
+    <student-detail *ngFor="let student of students" [student]="student" (delete)="deleteStudent($event)" (edit)="editStudent($event)" ></student-detail>
+</div>
+
+<ng-template #empty>
+  <div class="container center">
+    <h3>No students found</h3>
+  </div>
+</ng-template>

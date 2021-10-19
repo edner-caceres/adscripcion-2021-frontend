@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Student</h1>
+<div mat-dialog-content >
+    <form [formGroup]= "studentFormGroup" fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">
+        <input type="hidden" formControlName="id">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Full name" formControlName="name" required> 
+            <mat-error *ngIf="studentFormGroup.controls['name'].invalid && (studentFormGroup.controls['name'].dirty || studentFormGroup.controls['name'].touched)">
+                Name is required.
+            </mat-error>           
+        </mat-form-field>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-around">
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" required>
+                <mat-error *ngIf="studentFormGroup.controls['email'].invalid && (studentFormGroup.controls['email'].dirty || studentFormGroup.controls['email'].touched)">Enter a valid email</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+                <mat-label>Date of birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="studentFormGroup.controls['dob'].invalid && (studentFormGroup.controls['dob'].dirty || studentFormGroup.controls['dob'].touched)">
+                    Date of birth is required.
+                </mat-error> 
+            </mat-form-field>
+        </div>
+        
+    </form>
+    
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="studentFormGroup.pristine || studentFormGroup.invalid" >Save</button>
+</div>

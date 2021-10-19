@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <img mat-card-avatar src="assets/images/student-icon-blue.png" alt="">
+    <mat-card-title>{{student.name}}</mat-card-title>
+    <mat-card-subtitle>{{student.email }}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-actions>
+    <span class="date-of-birth">{{student.dob | date:'dd/MM/yyy'}}</span>
+    <div fxFlex="row" fxLayoutAlign="end center">
+      <button mat-icon-button color="primary" (click)="editStudent(student)" ><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button color="warn" (click)="deleteStudent(student)" > <mat-icon>delete</mat-icon></button>
+    </div>
+  </mat-card-actions>
+</mat-card>
